@@ -72,9 +72,9 @@ class UNetDecoder(nn.Module):
     @staticmethod
     def weight_init(m):
         if isinstance(m, nn.Conv3d):
-            nn.init.xavier_normal(m.weight)
+            nn.init.xavier_normal_(m.weight)
             # nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
-            nn.init.constant(m.bias, 0)
+            nn.init.constant_(m.bias, 0)
 
 
     def reset_params(self):

@@ -198,7 +198,7 @@ class ResNet(nn.Module):
         # print('x before avgpool at resnet3d.py: 197', x.shape)
         x = self.avgpool(x)
         # print('x avgpool at resnet3d.py: 199', x.shape)
-        x = self.harmonic_embedding(x)
+        # x = self.harmonic_embedding(x)
         # print('x harmonic embedding at resnet3d.py: 201', x.shape)
         # x = torch.flatten(x, 1)
         # print('x harmonic embedding flatten at resnet3d.py: 203', x.shape)
