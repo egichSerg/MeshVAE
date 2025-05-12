@@ -9,7 +9,7 @@ class VGG19(nn.Module):
      This module's only job is to return the "feature loss" for the inputs
     """
 
-    def __init__(self, channel_in=3, width=64, num_classes=10):
+    def __init__(self, channel_in=3, width=64):
         super(VGG19, self).__init__()
         
         self.conv1 = nn.Conv3d(channel_in, width, 3, 1, 1)
@@ -38,53 +38,19 @@ class VGG19(nn.Module):
         self.flatten = nn.Flatten()
         self.classifier = nn.Linear(139264, 10)
         
-        self.load_params_(num_classes)
+        self.load_params_()
 
-    def load_params_(self, num_classes):
-        path = Path('./model_collection/weights') / 'VGG19-ShapeNet10-mvcnn.pt'
+    def load_params_(self):
+        path = Path('./model_collection') / 'weights' / 'VGG19' / 'best.pt'
         state_dict = torch.load(path)
         for ((name, source_param), target_param) in zip(state_dict.items(), self.parameters()):
             target_param.data = source_param.data
             target_param.requires_grad = False
 
-        if num_classes != 10:
-            self.classifier = nn.Linear(139264, num_classes)
-
     def feature_loss(self, x):
         return (x[:x.shape[0] // 2] - x[x.shape[0] // 2:]).pow(2).mean()
 
     def forward(self, x):
-        x = self.conv1(x)
-        x = self.conv2(self.relu(x))
-        x = self.mp(self.relu(x))  # 64x64
-
-        x = self.conv3(x)
-        x = self.conv4(self.relu(x))
-        x = self.mp(self.relu(x))  # 32x32
-
-        x = self.conv5(x)
-        x = self.conv6(self.relu(x))
-        x = self.conv7(self.relu(x))
-        x = self.conv8(self.relu(x))
-        x = self.mp(self.relu(x))  # 16x16
-
-        x = self.conv9(x)
-        x = self.conv10(self.relu(x))
-        x = self.conv11(self.relu(x))
-        x = self.conv12(self.relu(x))
-        x = self.mp(self.relu(x))  # 8x8
-
-        x = self.conv13(x)
-        x = self.conv14(self.relu(x))
-        x = self.conv15(self.relu(x))
-        x = self.conv16(self.relu(x))
-        
-        x = self.flatten(self.relu(x))
-        x = self.classifier(x)
-        return x
-
-    
-    def perc_loss(self, x):
         """
         :param x: Expects x to be the target and source to concatenated on dimension 0
         :return: Feature loss
