@@ -25,11 +25,11 @@ Based on VAE architecture, it uses VAE+GAN to achieve even better results than j
 
 ### Architecture overview:
 
-![MeshVAE architecture]()
+![MeshVAE architecture](https://github.com/egichSerg/MeshVAE/blob/main/images/MeshVAE_architecture.png)
 
 ### VAE+GAN schema:
 
-![MeshVAE+GAN schema]()
+![MeshVAE+GAN schema](https://github.com/egichSerg/MeshVAE/blob/main/images/MeshVAE%2BGAN_architecture.png)
 
 ---
 ## How to: setup an environment
