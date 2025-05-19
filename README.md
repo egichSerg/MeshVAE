@@ -2,6 +2,27 @@
 
 MeshVAE is a nice little generative neural network
 
+## Example generation:
+
+| desk | sofa | chair | table |
+| --- | --- | --- | --- |
+| ![desk]() | ![sofa]() | ![chair]() | ![table]() |
+
+
+---
+
+## Model architecture
+
+Based on VAE architecture, it uses VAE+GAN to achieve even better results than just VAE. As its architecture is so small, it generates 64x64x64 models in ~4ms!
+
+### Architecture overview:
+
+![MeshVAE architecture]()
+
+### VAE+GAN schema:
+
+![MeshVAE+GAN schema]()
+
 ---
 ## How to: setup an environment
 #### 1. Create new conda environment:
