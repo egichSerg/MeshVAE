@@ -14,7 +14,7 @@ MeshVAE is a nice little generative neural network
 | Original | MeshVAE | MeshVAE+GAN |
 | --- | --- | --- |
 | <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/bed_orig.png" width="128" title="bed target" alt="bed target"/> | <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/bed_vae.png" width="128" title="bed vae" alt="bed vae"/> | <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/bed_gan.png" width="128" title="bed gan" alt="bed gan"/> |
-| <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/desk2.png" width="128" title="desk" alt="desk"/> | <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/divan_2.gif" width="128" title="sofa" alt="sofa"/> | <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/stool2.png" width="128" title="chair" alt="chair"/> | <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/stol2.png" width="128" title="table" alt="table"/> |
+| <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/table_bok_orig.png" width="128" title="table target" alt="table target"/> | <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/table_bok_vae.png" width="128" title="table vae" alt="table vae"/> | <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/table_bok_gan.png" width="128" title="table gan" alt="table gan"/> |
 
 
 ---
