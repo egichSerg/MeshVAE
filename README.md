@@ -6,7 +6,7 @@ MeshVAE is a nice little generative neural network
 
 | desk | sofa | chair | table |
 | --- | --- | --- | --- |
-|  | ![sofa](https://github.com/egichSerg/MeshVAE/blob/main/images/divan_1.gif) | ![chair](https://github.com/egichSerg/MeshVAE/blob/main/images/stool_nizhe.png) | ![table](https://github.com/egichSerg/MeshVAE/blob/main/images/stol.png) |
+| <img src="https://github.com/egichSerg/MeshVAE/blob/main/images/desk.png" width="64" title="desk" alt="desk"/> | ![sofa](https://github.com/egichSerg/MeshVAE/blob/main/images/divan_1.gif) | ![chair](https://github.com/egichSerg/MeshVAE/blob/main/images/stool_nizhe.png) | ![table](https://github.com/egichSerg/MeshVAE/blob/main/images/stol.png) |
 
 
 ---
