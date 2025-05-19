@@ -9,7 +9,7 @@ class VGG19(nn.Module):
      This module's only job is to return the "feature loss" for the inputs
     """
 
-    def __init__(self, channel_in=3, width=64, num_classes=10):
+    def __init__(self, load_weights, weights_path, channel_in=3, width=64, num_classes=10):
         super(VGG19, self).__init__()
         
         self.conv1 = nn.Conv3d(channel_in, width, 3, 1, 1)
@@ -36,12 +36,17 @@ class VGG19(nn.Module):
         self.mp = nn.MaxPool3d(kernel_size=2, stride=2)
         self.relu = nn.ReLU()
         self.flatten = nn.Flatten()
-        self.classifier = nn.Linear(139264, 10)
-        
-        self.load_params_(num_classes)
 
-    def load_params_(self, num_classes):
-        path = Path('./model_collection/weights') / 'VGG19-ShapeNet10-mvcnn.pt'
+        if load_weights:
+            self.classifier = nn.Linear(139264, 5)
+            self.load_params_(num_classes, weights_path)
+        else:
+            self.classifier = nn.Linear(139264, num_classes)
+            self.load_weights()
+
+    def load_params_(self, num_classes, weights_path):
+        # path = Path('./model_collection/weights') / 'VGG19-ShapeNet10-mvcnn.pt'
+        path = weights_path
         state_dict = torch.load(path)
         for ((name, source_param), target_param) in zip(state_dict.items(), self.parameters()):
             target_param.data = source_param.data
@@ -49,6 +54,18 @@ class VGG19(nn.Module):
 
         if num_classes != 10:
             self.classifier = nn.Linear(139264, num_classes)
+
+    def load_weights(self):
+        # Download and load Pytorch's pre-trained weights
+        state_dict = torch.hub.load_state_dict_from_url('https://download.pytorch.org/models/vgg19-dcbb9e9d.pth')
+        for ((name, source_param), target_param) in zip(state_dict.items(), self.parameters()):
+            param_name, _, param_type = name.split('.')
+            if param_name == 'classifier':
+                continue
+            if param_type == 'weight':
+                target_param.data = torch.stack([source_param.data] , dim=2)
+            elif param_type == 'bias':
+                target_param.data = source_param.data
 
     def feature_loss(self, x):
         return (x[:x.shape[0] // 2] - x[x.shape[0] // 2:]).pow(2).mean()
@@ -131,4 +148,3 @@ class VGG19(nn.Module):
         loss += self.feature_loss(x)
 
         return loss/16
-
